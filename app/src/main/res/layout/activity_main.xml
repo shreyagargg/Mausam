@@ -1,48 +1,41 @@
-<androidx.constraintlayout.widget.ConstraintLayout
+<LinearLayout
+    android:id="@+id/main"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/bg"
+    android:orientation="vertical"
     tools:context=".MainActivity">
 
-    <!-- Weather Icon -->
-
-    <!-- Title -->
     <ImageView
-        android:id="@+id/weatherIcon"
-        android:layout_width="150dp"
-        android:layout_height="150dp"
+        android:layout_width="450dp"
+        android:layout_height="350dp"
         android:layout_marginBottom="16dp"
-        android:src="@drawable/ic_launcher_foreground"
-        app:layout_constraintBottom_toTopOf="@+id/titleText"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.44"
-        app:layout_constraintStart_toStartOf="parent" />
+        android:src="@drawable/logo"
+        android:layout_gravity="center" />
 
     <TextView
-        android:id="@+id/titleText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Weather ForeCasts"
-        android:textSize="28sp"
+        android:text="Weather\nForeCasts"
+        android:textSize="57sp"
         android:textStyle="bold"
-        android:textColor="@android:color/white"
+        android:textColor="#E91E63"
+        android:layout_gravity="center"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toTopOf="@+id/getStartedButton"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
-    <!-- Get Started Button -->
     <Button
-        android:id="@+id/getStartedButton"
+        android:id="@+id/start"
         android:layout_width="200dp"
         android:layout_height="wrap_content"
-        android:backgroundTint="@color/black"
+        android:backgroundTint="#E91E63"
         android:text="Get Start"
-        android:textColor="@android:color/white"
-        app:layout_constraintTop_toBottomOf="@+id/titleText"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+        android:textColor="@color/white"
+        android:textSize="30sp"
+        android:layout_gravity="center"/>
+</LinearLayout>

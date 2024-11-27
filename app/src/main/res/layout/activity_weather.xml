@@ -1,0 +1,70 @@
+<LinearLayout
+    android:id="@+id/main"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg"
+    android:orientation="vertical"
+    android:padding="30dp"
+    tools:context=".WeatherActivity">
+
+    <ImageView
+        android:layout_width="450dp"
+        android:layout_height="350dp"
+        android:layout_marginBottom="16dp"
+        android:src="@drawable/logo"
+        android:layout_gravity="center" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="temp"
+        android:textSize="57sp"
+        android:textStyle="bold"
+        android:textColor="#E91E63"
+        android:layout_gravity="center"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/getStartedButton"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Precipitation: Max 24°, Min 18°"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        android:textColor="#E91E63"
+        android:layout_gravity="center"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/getStartedButton"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+<!--    <TextView-->
+<!--        android:id="@+id/weatherDetails"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:text="Precipitation: Max 24°, Min 18°"-->
+<!--        android:textColor="@android:color/white"-->
+<!--        android:textSize="16sp"-->
+<!--        app:layout_constraintBottom_toBottomOf="parent"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintHorizontal_bias="0.432"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/temperatureText"-->
+<!--        app:layout_constraintVertical_bias="0.145" />-->
+
+    <!-- Current Day Weather -->
+<!--    <ImageView-->
+<!--        android:id="@+id/currentDayWeatherIcon"-->
+<!--        android:layout_width="200dp"-->
+<!--        android:layout_height="200dp"-->
+<!--        android:src="@drawable/logo"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/weatherDetails"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintEnd_toEndOf="parent" />-->
+
+</LinearLayout>
