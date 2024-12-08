@@ -24,7 +24,6 @@ class WeatherActivity : AppCompatActivity() {
             if (isGranted) {
                 getLocation()
             } else {
-                // Handle the case where permission is denied
                 findViewById<TextView>(R.id.weather).text = "Permission Denied"
             }
         }
@@ -36,21 +35,21 @@ class WeatherActivity : AppCompatActivity() {
         // Initialize fused location client
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(this)
 
-        // Check if permission is already granted
+        // Check permissions
         if (ContextCompat.checkSelfPermission(
                 this,
                 Manifest.permission.ACCESS_FINE_LOCATION
             ) == PackageManager.PERMISSION_GRANTED
         ) {
-            getLocation() // Permission granted, fetch location
+            getLocation()
         } else {
             requestPermissionLauncher.launch(Manifest.permission.ACCESS_FINE_LOCATION)
         }
 
         // Bind views
         val weatherText = findViewById<TextView>(R.id.weather)
-        val city = findViewById<TextView>(R.id.city)
-        val temp = findViewById<TextView>(R.id.temp)
+        val cityText = findViewById<TextView>(R.id.city)
+        val tempText = findViewById<TextView>(R.id.temp)
 //        val minTempText = findViewById<TextView>(R.id.min)
 //        val maxTempText = findViewById<TextView>(R.id.max)
 
@@ -58,34 +57,33 @@ class WeatherActivity : AppCompatActivity() {
         weatherModel.weatherLiveData.observe(this, Observer { weather ->
             if (weather != null) {
                 Log.d("WeatherAPI", "API Response: ${weather.main.temp_min} - ${weather.main.temp_max}")
-
-                // Update UI with weather data
                 weatherText.text = weather.weather[0].description.capitalize()
-                city.text = weather.name // City name
-                temp.text = "Temperature: ${weather.main.temp}°C" // Current temperature
-//                minTempText.text = "Min: ${weather.main.temp_min}°C" // Min temperature
-//                maxTempText.text = "Max: ${weather.main.temp_max}°C" // Max temperature
+                cityText.text = weather.name
+                tempText.text = "Temp: ${weather.main.temp}°C"
+//                minTempText.text = "Min: ${weather.main.temp_min}°C"
+//                maxTempText.text = "Max: ${weather.main.temp_max}°C"
             } else {
-                // If weather data is null
                 weatherText.text = "Error fetching weather data"
             }
         })
     }
 
-    // Fetch location after permission is granted
     private fun getLocation() {
         try {
             fusedLocationClient.lastLocation.addOnSuccessListener { location ->
                 if (location != null) {
-                    // Fetch weather for the current location
+                    Log.d("Location", "Lat: ${location.latitude}, Lon: ${location.longitude}")
                     weatherModel.fetchCurrentWeather(location.latitude, location.longitude)
                 } else {
-                    findViewById<TextView>(R.id.weather).text = "Location not found"
+                    Log.e("Location", "Location is null")
+                    findViewById<TextView>(R.id.weather).text = "Location not found. Enable GPS."
                 }
+            }.addOnFailureListener { e ->
+                Log.e("Location", "Failed to fetch location", e)
+                findViewById<TextView>(R.id.weather).text = "Error fetching location"
             }
         } catch (e: SecurityException) {
-            // Handle SecurityException if permissions are denied or location is not available
-            Log.e("WeatherActivity", "Location permission not granted", e)
+            Log.e("WeatherActivity", "Permission denied for location access", e)
             findViewById<TextView>(R.id.weather).text = "Location permission required"
         }
     }
